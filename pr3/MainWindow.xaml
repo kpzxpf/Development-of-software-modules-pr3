@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pr3"
         mc:Ignorable="d"
-        Title="Управление товарами" Height="350" Width="525" MinHeight="400">
+         Title="Учёт заказов" Height="450" Width="600" MinHeight="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/> 
-            <RowDefinition Height="Auto"/> 
-            <RowDefinition Height="*"/> 
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -20,30 +21,41 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         
-        <TextBlock Text="Название товара:" Grid.Row="0" Grid.Column="0" Margin="10" 
-                   HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-        <TextBox x:Name="ProductNameTextBox" Grid.Row="1" Grid.Column="0" Height="25" Margin="10" 
-                   HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <TextBlock Text="Номер заказа:" Grid.Row="0" Grid.Column="0" Margin="10" 
+                   VerticalAlignment="Center"/>
+        <TextBox x:Name="OrderNumberTextBox" Grid.Row="1" Grid.Column="0" Height="25" Margin="10" 
+                 VerticalAlignment="Center"/>
+
+        <TextBlock Text="Продукт:" Grid.Row="0" Grid.Column="1" Margin="10" 
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="ProductComboBox" Grid.Row="1" Grid.Column="1" Height="25" Margin="10"
+                  VerticalAlignment="Center">
+            <ComboBox.Items>
+                <ComboBoxItem Content="Товар 1"/>
+                <ComboBoxItem Content="Товар 2"/>
+                <ComboBoxItem Content="Товар 3"/>
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock Text="Статус заказа:" Grid.Row="0" Grid.Column="2" Margin="10" 
+                   VerticalAlignment="Center"/>
+        <ComboBox x:Name="OrderStatusComboBox" Grid.Row="1" Grid.Column="2" Height="25" Margin="10"
+                  VerticalAlignment="Center">
+            <ComboBox.Items>
+                <ComboBoxItem Content="В процессе"/>
+                <ComboBoxItem Content="Выполнен"/>
+            </ComboBox.Items>
+        </ComboBox>
         
-        <TextBlock Text="Цена товара" Grid.Row="0" Grid.Column="1" Margin="10" 
-                   HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-        <TextBox x:Name="ProductPriceTextBox" Grid.Row="1" Grid.Column="1" Height="25" Margin="10" 
-                 HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <Button Content="Добавить заказ" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Height="30" Margin="10"
+                Click="AddOrderButton_Click"/>
         
-        <TextBlock Text="Количество товара" Grid.Row="0" Grid.Column="2" Margin="10" 
-                   HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-        <TextBox x:Name="ProductQuantityTextBox" Grid.Row="1" Grid.Column="2" Height="25" Margin="10" 
-                 HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-        
-        <Button Content="Добавить" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Height="30" Margin="10"
-                Click="AddProductButton_Click"></Button>
-        
-        <DataGrid x:Name="ProductsDataGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="10"
+        <DataGrid x:Name="OrdersDataGrid" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="10"
                   AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название товара" Binding="{Binding ProductName}" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding ProductName}" />
-                <DataGridTextColumn Header="Количество" Binding="{Binding ProductName}" />
+                <DataGridTextColumn Header="Номер заказа" Binding="{Binding OrderNumber}" />
+                <DataGridTextColumn Header="Продукт" Binding="{Binding Product}" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
